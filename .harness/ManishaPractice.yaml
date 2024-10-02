@@ -3,3 +3,17 @@ service:
   identifier: ManishaPractice
   orgIdentifier: default
   projectIdentifier: default_project
+  serviceDefinition:
+    spec:
+      artifacts:
+        primary:
+          primaryArtifactRef: <+input>
+          sources:
+            - spec:
+                connectorRef: Manishadockerartifact
+                imagePath: mehar221/new-image
+                tag: <+input>
+                digest: ""
+              identifier: manisha
+              type: DockerRegistry
+    type: Kubernetes
