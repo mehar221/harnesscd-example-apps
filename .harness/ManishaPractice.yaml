@@ -1,0 +1,5 @@
+service:
+  name: Manisha-Practice
+  identifier: ManishaPractice
+  orgIdentifier: default
+  projectIdentifier: default_project
