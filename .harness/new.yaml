@@ -4,11 +4,6 @@ pipeline:
   projectIdentifier: default_project
   orgIdentifier: default
   tags: {}
-  properties:
-    ci:
-      codebase:
-        connectorRef: harnessgitconnector
-        build: <+input>
   stages:
     - stage:
         name: build
@@ -16,7 +11,7 @@ pipeline:
         description: ""
         type: CI
         spec:
-          cloneCodebase: true
+          cloneCodebase: false
           execution:
             steps:
               - step:
@@ -36,6 +31,11 @@ pipeline:
               automountServiceAccountToken: true
               nodeSelector: {}
               os: Linux
+          caching:
+            enabled: false
+            paths: []
+          buildIntelligence:
+            enabled: false
         delegateSelectors:
           - kubernetes-delegate
     - stage:
@@ -47,6 +47,7 @@ pipeline:
           org: default
           pipeline: guestbook_rolling_pipeline
           project: default_project
+          outputs: []
         tags: {}
     - stage:
         name: deploy
