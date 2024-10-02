@@ -32,10 +32,12 @@ pipeline:
             type: KubernetesDirect
             spec:
               connectorRef: harnessk8sconnector
-              namespace: harness
+              namespace: harness-delegate-ng
               automountServiceAccountToken: true
               nodeSelector: {}
               os: Linux
+        delegateSelectors:
+          - kubernetes-delegate
     - stage:
         name: pipeline
         identifier: pipeline
@@ -85,3 +87,5 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+        delegateSelectors:
+          - kubernetes-delegate
