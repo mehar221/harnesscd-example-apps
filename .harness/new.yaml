@@ -17,12 +17,6 @@ pipeline:
         type: CI
         spec:
           cloneCodebase: true
-          platform:
-            os: Linux
-            arch: Arm64
-          runtime:
-            type: Docker
-            spec: {}
           execution:
             steps:
               - step:
@@ -34,6 +28,14 @@ pipeline:
                     repo: mehar221/harness
                     tags:
                       - version
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: harnessk8sconnector
+              namespace: harness
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
     - stage:
         name: pipeline
         identifier: pipeline
